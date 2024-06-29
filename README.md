@@ -5,12 +5,7 @@
 <h2 align="center">
   ～ Your Neo4j, in a Box. ～
 <br>
-  <img alt="PyPI - Version" src="https://img.shields.io/pypi/v/Neo4j-docker-starter-SURF">
-<img alt="PyPI - Format" src="https://img.shields.io/pypi/format/Neo4j-docker-starter-SURF">
-<img alt="PyPI - Implementation" src="https://img.shields.io/pypi/implementation/Neo4j-docker-starter-SURF">
-<img alt="PyPI - Status" src="https://img.shields.io/pypi/status/Neo4j-docker-starter-SURF">
-<img alt="PyPI - Downloads" src="https://img.shields.io/pypi/dd/Neo4j-docker-starter-SURF">
-<img alt="PyPI - Downloads" src="https://img.shields.io/pypi/dw/Neo4j-docker-starter-SURF">
+ 
 <a href="https://github.com/Sunwood-ai-labs/Neo4j-docker-starter" title="Go to GitHub repo"><img src="https://img.shields.io/static/v1?label=Neo4j-docker-starter&message=Sunwood-ai-labs&color=blue&logo=github"></a>
 <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/Sunwood-ai-labs/Neo4j-docker-starter">
 <a href="https://github.com/Sunwood-ai-labs/Neo4j-docker-starter"><img alt="forks - Sunwood-ai-labs" src="https://img.shields.io/github/forks/Neo4j-docker-starter/Sunwood-ai-labs?style=social"></a>
@@ -34,69 +29,89 @@
 >[!IMPORTANT]
 >このリポジトリのリリースノートやREADME、コミットメッセージの9割近くは[claude.ai](https://claude.ai/)や[ChatGPT4](https://chatgpt.com/)を活用した[AIRA](https://github.com/Sunwood-ai-labs/AIRA), [SourceSage](https://github.com/Sunwood-ai-labs/SourceSage), [Gaiah](https://github.com/Sunwood-ai-labs/Gaiah), [HarmonAI_II](https://github.com/Sunwood-ai-labs/HarmonAI_II)で生成しています。
 
+
 ## 🌟 はじめに
 
-このリポジトリには、Docker Compose を使用して Pegasus を簡単に実行するためのファイルが含まれています。Pegasus は、ウェブサイトを再帰的にクロールし、そのコンテンツを美しくフォーマットされた Markdown ドキュメントに変換する、パワフルで柔軟な Python パッケージです。
+Neo4j-docker-starterは、Docker Composeを使用してNeo4jグラフデータベース環境を簡単に構築し、Pythonを使ってデータベース操作を行うためのスターターキットです。
 
-## 🎥 デモ
+## 🚀 特徴
 
-（デモ動画またはスクリーンショットがあればここに挿入）
+- Docker Composeを使用した簡単なNeo4j環境のセットアップ
+- Pythonを使ったNeo4jデータベース操作の基本的な例
+- 初心者にも分かりやすいステップバイステップの説明
 
-## 🚀 はじめよう
+## 📋 前提条件
 
-1. **リポジトリのクローン:**
+- Docker
+- Docker Compose
+- Python 3.7以上
+
+## 🛠 セットアップ
+
+1. リポジトリをクローンします：
 
 ```bash
-git clone https://github.com/{あなたのGitHubユーザーネーム}/pegasus-docker.git
-cd pegasus-docker
+git clone https://github.com/Sunwood-ai-labs/Neo4j-docker-starter.git
+cd Neo4j-docker-starter
 ```
 
-2. **Docker Compose ファイルの編集:**
-
-`docker-compose.yml` ファイルを開き、`command` セクションで Pegasus に渡す引数を編集します。例：
+2. `docker-compose.yml`ファイルを編集し、必要に応じてパスワードを変更します：
 
 ```yaml
-version: "3.9"
-services:
-  pegasus:
-    image: pegasus-crawler/pegasus
-    command: ["pegasus", "https://www.example.com", "-o", "/data"]
-    volumes:
-      - ./output:/data
+environment:
+  - NEO4J_AUTH=neo4j/your_password
 ```
 
-* `https://www.example.com` をクロールしたいウェブサイトのURLに置き換えます。
-* `-o /data` は、Markdownファイルの出力先ディレクトリを指定します。これはコンテナ内の `/data` ディレクトリにマウントされます。
-
-3. **Pegasusの実行:**
+3. Docker Composeを使用してNeo4jコンテナを起動します：
 
 ```bash
 docker-compose up -d
 ```
 
-4. **結果の確認:**
+4. 必要なPythonパッケージをインストールします：
 
-Pegasus がクロールと変換を完了すると、Markdown ファイルは `./output` ディレクトリに出力されます。
+```bash
+pip install neo4j loguru art
+```
 
-## 📝 更新情報
+## 📊 サンプルプログラム
 
-（更新情報があればここに記載）
+`example`ディレクトリには、Neo4jデータベースの基本的な操作を示す6つのサンプルプログラムが含まれています：
 
-## ✨ 機能
+1. **example01_connect.py**: Neo4jデータベースへの接続
+2. **example02_create.py**: ノードの作成
+3. **example03_query.py**: データのクエリ
+4. **example04_update.py**: データの更新
+5. **example05_delete.py**: データの削除
+6. **example06_transaction.py**: トランザクションの使用
 
-* **再帰的なクロール:** 指定された URL から始まり、リンクをたどって関連するページを探索します。
-* **美しい Markdown 変換:** HTML コンテンツを構造化された読みやすい Markdown ファイルに変換します。
-* **柔軟な設定:** クロールの深さ、変換するファイルの種類、出力ディレクトリなどをカスタマイズできます。
-* **コマンドラインと Python の両方から使用可能:** コマンドラインインターフェイス（CLI）から実行することも、Python スクリプトから直接使用することもできます。
+各サンプルプログラムは以下のように実行できます：
 
-## 🤝 コントリビュート
+```bash
+python example/example01_connect.py
+```
 
-（コントリビュートの方法があればここに記載）
+## 🔧 使用方法
+
+1. Neo4j Browserにアクセス：`http://localhost:7474`
+2. ログイン情報を入力：
+   - ユーザー名: `neo4j`
+   - パスワード: `your_password`（docker-compose.ymlで設定したもの）
+3. サンプルプログラムを実行して、Neo4jデータベースの基本的な操作を確認
+
+## 🤝 コントリビューション
+
+プルリクエストは大歓迎です。大きな変更の場合は、まずissueを開いて議論してください。
 
 ## 📄 ライセンス
 
-このプロジェクトは MIT ライセンスの下でライセンスされています。詳細については、`LICENSE` ファイルを参照してください。
+このプロジェクトはMITライセンスの下で公開されています。
 
 ## 🙏 謝辞
 
-（謝辞があればここに記載）
+- Neo4jコミュニティの皆様
+- Docker Composeの開発者の皆様
+
+---
+
+開発者：Sunwood AI Labs
