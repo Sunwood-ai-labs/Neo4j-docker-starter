@@ -6,7 +6,7 @@ aira:
       description: "Your Neo4j, in a Box."
       private: false
     local:
-      repo_dir: "D:/Prj/Neo4j-docker-starter"
+      repo_dir: "./"
       no_initial_commit: false
     commit:
       commit_msg_path: ".Gaiah.md"
@@ -60,10 +60,10 @@ aira:
       sections_content_file: "sections_template_llm.md"
 
     development:
-      output_dir: "D:/Prj/Neo4j-docker-starter/.harmon_ai"
+      output_dir: ".//.harmon_ai"
 
     main:
-      main_dir: "D:/Prj/Neo4j-docker-starter/"
+      main_dir: ".//"
       replace_readme: true
 
     instructions_prompt: .aira/instructions.md
