@@ -10,6 +10,6 @@ services:
       - NEO4J_AUTH=neo4j/your_password
       - NEO4J_PLUGINS=["apoc"]
     volumes:
-      - neo4j_data:/data
+      - neo4j_data1:/data
 volumes:
-  neo4j_data:
+  neo4j_data1:
